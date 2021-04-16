@@ -56,3 +56,22 @@ def prep_sales_store_items_df(df):
 
     return df
 
+
+def prep_opsd():
+    '''
+    This functions reads the open power data
+    and cleans the dataframe and prepares it for analysis
+    '''
+
+    df = pd.read_csv('opsd_germany_daily.csv', index_col='datetime', parse_dates=True).sort_index()
+
+    #Create a column for month
+    df['month'] = df.index.month_name()
+
+    #Create a column for year
+    df['year'] = df.index.year  
+
+    df = df.fillna('0')
+
+    return df
+
